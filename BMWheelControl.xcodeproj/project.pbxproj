@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		435ED57C172C0709002C6B92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435ED57B172C0709002C6B92 /* Foundation.framework */; };
-		435ED581172C0709002C6B92 /* BMWheelControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 435ED580172C0709002C6B92 /* BMWheelControl.h */; };
-		435ED583172C0709002C6B92 /* BMWheelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ED582172C0709002C6B92 /* BMWheelControl.m */; };
 		435ED58B172C0709002C6B92 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435ED58A172C0709002C6B92 /* SenTestingKit.framework */; };
 		435ED58D172C0709002C6B92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435ED58C172C0709002C6B92 /* UIKit.framework */; };
 		435ED58E172C0709002C6B92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435ED57B172C0709002C6B92 /* Foundation.framework */; };
 		435ED591172C0709002C6B92 /* libBMWheelControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 435ED578172C0709002C6B92 /* libBMWheelControl.a */; };
 		435ED597172C0709002C6B92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 435ED595172C0709002C6B92 /* InfoPlist.strings */; };
 		435ED59A172C0709002C6B92 /* BMWheelControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ED599172C0709002C6B92 /* BMWheelControlTests.m */; };
+		435ED5A5172C0723002C6B92 /* BMWheelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ED5A4172C0723002C6B92 /* BMWheelControl.m */; };
+		435ED5A6172C0723002C6B92 /* BMWheelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ED5A4172C0723002C6B92 /* BMWheelControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +35,6 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
-				435ED581172C0709002C6B92 /* BMWheelControl.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,8 +44,6 @@
 		435ED578172C0709002C6B92 /* libBMWheelControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBMWheelControl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		435ED57B172C0709002C6B92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		435ED57F172C0709002C6B92 /* BMWheelControl-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BMWheelControl-Prefix.pch"; sourceTree = "<group>"; };
-		435ED580172C0709002C6B92 /* BMWheelControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMWheelControl.h; sourceTree = "<group>"; };
-		435ED582172C0709002C6B92 /* BMWheelControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMWheelControl.m; sourceTree = "<group>"; };
 		435ED589172C0709002C6B92 /* BMWheelControlTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BMWheelControlTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		435ED58A172C0709002C6B92 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		435ED58C172C0709002C6B92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -54,6 +51,8 @@
 		435ED596172C0709002C6B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		435ED598172C0709002C6B92 /* BMWheelControlTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMWheelControlTests.h; sourceTree = "<group>"; };
 		435ED599172C0709002C6B92 /* BMWheelControlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMWheelControlTests.m; sourceTree = "<group>"; };
+		435ED5A3172C0723002C6B92 /* BMWheelControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMWheelControl.h; sourceTree = "<group>"; };
+		435ED5A4172C0723002C6B92 /* BMWheelControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMWheelControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +110,8 @@
 		435ED57D172C0709002C6B92 /* BMWheelControl */ = {
 			isa = PBXGroup;
 			children = (
-				435ED580172C0709002C6B92 /* BMWheelControl.h */,
-				435ED582172C0709002C6B92 /* BMWheelControl.m */,
+				435ED5A3172C0723002C6B92 /* BMWheelControl.h */,
+				435ED5A4172C0723002C6B92 /* BMWheelControl.m */,
 				435ED57E172C0709002C6B92 /* Supporting Files */,
 			);
 			path = BMWheelControl;
@@ -243,7 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				435ED583172C0709002C6B92 /* BMWheelControl.m in Sources */,
+				435ED5A5172C0723002C6B92 /* BMWheelControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				435ED59A172C0709002C6B92 /* BMWheelControlTests.m in Sources */,
+				435ED5A6172C0723002C6B92 /* BMWheelControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
