@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'BMWheelControl' target in the 'BMWheelControl' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

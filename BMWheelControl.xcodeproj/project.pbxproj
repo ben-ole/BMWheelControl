@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		435ED57C172C0709002C6B92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435ED57B172C0709002C6B92 /* Foundation.framework */; };
+		435ED581172C0709002C6B92 /* BMWheelControl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 435ED580172C0709002C6B92 /* BMWheelControl.h */; };
+		435ED583172C0709002C6B92 /* BMWheelControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ED582172C0709002C6B92 /* BMWheelControl.m */; };
+		435ED58B172C0709002C6B92 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435ED58A172C0709002C6B92 /* SenTestingKit.framework */; };
+		435ED58D172C0709002C6B92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435ED58C172C0709002C6B92 /* UIKit.framework */; };
+		435ED58E172C0709002C6B92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435ED57B172C0709002C6B92 /* Foundation.framework */; };
+		435ED591172C0709002C6B92 /* libBMWheelControl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 435ED578172C0709002C6B92 /* libBMWheelControl.a */; };
+		435ED597172C0709002C6B92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 435ED595172C0709002C6B92 /* InfoPlist.strings */; };
+		435ED59A172C0709002C6B92 /* BMWheelControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 435ED599172C0709002C6B92 /* BMWheelControlTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		435ED58F172C0709002C6B92 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 435ED570172C0709002C6B92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 435ED577172C0709002C6B92;
+			remoteInfo = BMWheelControl;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		435ED576172C0709002C6B92 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/${PRODUCT_NAME}";
+			dstSubfolderSpec = 16;
+			files = (
+				435ED581172C0709002C6B92 /* BMWheelControl.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		435ED578172C0709002C6B92 /* libBMWheelControl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBMWheelControl.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		435ED57B172C0709002C6B92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		435ED57F172C0709002C6B92 /* BMWheelControl-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BMWheelControl-Prefix.pch"; sourceTree = "<group>"; };
+		435ED580172C0709002C6B92 /* BMWheelControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMWheelControl.h; sourceTree = "<group>"; };
+		435ED582172C0709002C6B92 /* BMWheelControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMWheelControl.m; sourceTree = "<group>"; };
+		435ED589172C0709002C6B92 /* BMWheelControlTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BMWheelControlTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		435ED58A172C0709002C6B92 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		435ED58C172C0709002C6B92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		435ED594172C0709002C6B92 /* BMWheelControlTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BMWheelControlTests-Info.plist"; sourceTree = "<group>"; };
+		435ED596172C0709002C6B92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		435ED598172C0709002C6B92 /* BMWheelControlTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMWheelControlTests.h; sourceTree = "<group>"; };
+		435ED599172C0709002C6B92 /* BMWheelControlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BMWheelControlTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		435ED575172C0709002C6B92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				435ED57C172C0709002C6B92 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		435ED585172C0709002C6B92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				435ED58B172C0709002C6B92 /* SenTestingKit.framework in Frameworks */,
+				435ED58D172C0709002C6B92 /* UIKit.framework in Frameworks */,
+				435ED58E172C0709002C6B92 /* Foundation.framework in Frameworks */,
+				435ED591172C0709002C6B92 /* libBMWheelControl.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		435ED56F172C0709002C6B92 = {
+			isa = PBXGroup;
+			children = (
+				435ED57D172C0709002C6B92 /* BMWheelControl */,
+				435ED592172C0709002C6B92 /* BMWheelControlTests */,
+				435ED57A172C0709002C6B92 /* Frameworks */,
+				435ED579172C0709002C6B92 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		435ED579172C0709002C6B92 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				435ED578172C0709002C6B92 /* libBMWheelControl.a */,
+				435ED589172C0709002C6B92 /* BMWheelControlTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		435ED57A172C0709002C6B92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				435ED57B172C0709002C6B92 /* Foundation.framework */,
+				435ED58A172C0709002C6B92 /* SenTestingKit.framework */,
+				435ED58C172C0709002C6B92 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		435ED57D172C0709002C6B92 /* BMWheelControl */ = {
+			isa = PBXGroup;
+			children = (
+				435ED580172C0709002C6B92 /* BMWheelControl.h */,
+				435ED582172C0709002C6B92 /* BMWheelControl.m */,
+				435ED57E172C0709002C6B92 /* Supporting Files */,
+			);
+			path = BMWheelControl;
+			sourceTree = "<group>";
+		};
+		435ED57E172C0709002C6B92 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				435ED57F172C0709002C6B92 /* BMWheelControl-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		435ED592172C0709002C6B92 /* BMWheelControlTests */ = {
+			isa = PBXGroup;
+			children = (
+				435ED598172C0709002C6B92 /* BMWheelControlTests.h */,
+				435ED599172C0709002C6B92 /* BMWheelControlTests.m */,
+				435ED593172C0709002C6B92 /* Supporting Files */,
+			);
+			path = BMWheelControlTests;
+			sourceTree = "<group>";
+		};
+		435ED593172C0709002C6B92 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				435ED594172C0709002C6B92 /* BMWheelControlTests-Info.plist */,
+				435ED595172C0709002C6B92 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		435ED577172C0709002C6B92 /* BMWheelControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 435ED59D172C0709002C6B92 /* Build configuration list for PBXNativeTarget "BMWheelControl" */;
+			buildPhases = (
+				435ED574172C0709002C6B92 /* Sources */,
+				435ED575172C0709002C6B92 /* Frameworks */,
+				435ED576172C0709002C6B92 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BMWheelControl;
+			productName = BMWheelControl;
+			productReference = 435ED578172C0709002C6B92 /* libBMWheelControl.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		435ED588172C0709002C6B92 /* BMWheelControlTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 435ED5A0172C0709002C6B92 /* Build configuration list for PBXNativeTarget "BMWheelControlTests" */;
+			buildPhases = (
+				435ED584172C0709002C6B92 /* Sources */,
+				435ED585172C0709002C6B92 /* Frameworks */,
+				435ED586172C0709002C6B92 /* Resources */,
+				435ED587172C0709002C6B92 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				435ED590172C0709002C6B92 /* PBXTargetDependency */,
+			);
+			name = BMWheelControlTests;
+			productName = BMWheelControlTests;
+			productReference = 435ED589172C0709002C6B92 /* BMWheelControlTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		435ED570172C0709002C6B92 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Benjamin Müller";
+			};
+			buildConfigurationList = 435ED573172C0709002C6B92 /* Build configuration list for PBXProject "BMWheelControl" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 435ED56F172C0709002C6B92;
+			productRefGroup = 435ED579172C0709002C6B92 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				435ED577172C0709002C6B92 /* BMWheelControl */,
+				435ED588172C0709002C6B92 /* BMWheelControlTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		435ED586172C0709002C6B92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				435ED597172C0709002C6B92 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		435ED587172C0709002C6B92 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		435ED574172C0709002C6B92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				435ED583172C0709002C6B92 /* BMWheelControl.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		435ED584172C0709002C6B92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				435ED59A172C0709002C6B92 /* BMWheelControlTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		435ED590172C0709002C6B92 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 435ED577172C0709002C6B92 /* BMWheelControl */;
+			targetProxy = 435ED58F172C0709002C6B92 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		435ED595172C0709002C6B92 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				435ED596172C0709002C6B92 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		435ED59B172C0709002C6B92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		435ED59C172C0709002C6B92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		435ED59E172C0709002C6B92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/BMWheelControl.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BMWheelControl/BMWheelControl-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		435ED59F172C0709002C6B92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/BMWheelControl.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BMWheelControl/BMWheelControl-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		435ED5A1172C0709002C6B92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BMWheelControl/BMWheelControl-Prefix.pch";
+				INFOPLIST_FILE = "BMWheelControlTests/BMWheelControlTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		435ED5A2172C0709002C6B92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BMWheelControl/BMWheelControl-Prefix.pch";
+				INFOPLIST_FILE = "BMWheelControlTests/BMWheelControlTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		435ED573172C0709002C6B92 /* Build configuration list for PBXProject "BMWheelControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				435ED59B172C0709002C6B92 /* Debug */,
+				435ED59C172C0709002C6B92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		435ED59D172C0709002C6B92 /* Build configuration list for PBXNativeTarget "BMWheelControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				435ED59E172C0709002C6B92 /* Debug */,
+				435ED59F172C0709002C6B92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		435ED5A0172C0709002C6B92 /* Build configuration list for PBXNativeTarget "BMWheelControlTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				435ED5A1172C0709002C6B92 /* Debug */,
+				435ED5A2172C0709002C6B92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 435ED570172C0709002C6B92 /* Project object */;
+}
