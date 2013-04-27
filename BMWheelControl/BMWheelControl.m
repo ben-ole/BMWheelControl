@@ -10,8 +10,10 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation BMWheelControl{
+    NSMutableArray* _iconRepresentations;
     UIPanGestureRecognizer* _panRecognizer;
     CGPoint _panStart;
+    Boolean _iconsLoaded;
 }
 
 #pragma mark - INIT
@@ -43,12 +45,14 @@
 
 
 -(void)setup{
-    
+
     // setup gesture recognizer
     _panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
     [self addGestureRecognizer:_panRecognizer];
     
     // set defaults
+    _iconsLoaded = NO;
+    
     self.backgroundColor = [UIColor clearColor];
     self.borderColor = [UIColor blackColor];
     self.circleColor = [UIColor greenColor];
@@ -118,8 +122,47 @@
 
 -(void)setIcons:(NSArray *)icons{
     _icons = icons;
+    _iconRepresentations = nil;
+    _iconsLoaded = NO;
     
-    [self setNeedsDisplay];
+    // load icons in background
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        _iconRepresentations = [NSMutableArray arrayWithArray:_icons];
+        
+        int i=0;
+        for (id ico in _icons) {
+            
+            if([ico isKindOfClass:[NSNull class]]) continue;   // don't draw any icon for this case
+            
+            if(![ico isKindOfClass:[NSString class]])
+                [NSException raise:@"Invalid icon data."
+                            format:@"The provided icon path should be of type NSString but was of type '%@'",[ico class]];
+            
+            // load icon
+            UIImage* iconRep;
+            if ([(NSString*)ico isAbsolutePath] && [[NSFileManager defaultManager] fileExistsAtPath:ico]) {
+                iconRep = [[UIImage alloc] initWithContentsOfFile:ico];
+            }else{
+                iconRep = [UIImage imageNamed:ico];
+            }
+            
+            if(!iconRep)
+                [NSException raise:@"Invalid icon name or path."
+                            format:@"Could not load an icon file at '%@'",ico];
+            
+            [_iconRepresentations replaceObjectAtIndex:i withObject:iconRep];
+            
+            i++;
+        }
+        
+        _iconsLoaded = YES;
+    
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            [self setNeedsDisplay];
+        });
+    });
 }
 
 -(void)setIconInset:(float)iconInset{
@@ -264,6 +307,8 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    if (WAIT_FOR_ICONS && !_iconsLoaded)
+        return;
     
     float size = [self outerCircleSize];
     float xOffset = (self.bounds.size.width - size) * 0.5;
@@ -301,31 +346,17 @@
     float angleSize = 2.0*M_PI / numIcons;
     
     
-    [_icons enumerateObjectsWithOptions:NSEnumerationConcurrent
+    [_iconRepresentations enumerateObjectsWithOptions:NSEnumerationConcurrent
                              usingBlock:^(id object, NSUInteger index, BOOL *stop) {
 
         if([object isKindOfClass:[NSNull class]]) return;   // don't draw any icon for this case
         
-        if(![object isKindOfClass:[NSString class]])
-            [NSException raise:@"Invalid icon data."
-                        format:@"The provided icon path should be of type NSString but was of type '%@'",[object class]];
-        
-        // load icon
-        UIImage* icon;
-        if ([(NSString*)object isAbsolutePath] && [[NSFileManager defaultManager] fileExistsAtPath:object]) {
-            icon = [[UIImage alloc] initWithContentsOfFile:object];
-        }else{
-            icon = [UIImage imageNamed:object];
-        }
-        
-        if(!icon)
-            [NSException raise:@"Invalid icon name or path."
-                        format:@"Could not load an icon file at '%@'",object];
-        
+        UIImage* icon = object;
+                                 
         CGPoint iconPosition = CGPointMake(radius * cos(((float)index)/numIcons * M_2_PI - M_PI_2) + center.x,
                                            radius * sin(((float)index)/numIcons * M_2_PI - M_PI_2) + center.y);
         
-        iconPosition = CGPointMake(0,   - radius);
+        iconPosition = CGPointMake(0, - radius);
                 
         // center icon on iconPosition
         iconPosition = CGPointMake(iconPosition.x - icon.size.width*0.5,
