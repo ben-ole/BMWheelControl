@@ -1,0 +1,1 @@
+appledoc --project-name "BMWheelControl" --project-company "Benjamin Müller" --company-id "com.codebility" --no-install-docset --output ./doc .
