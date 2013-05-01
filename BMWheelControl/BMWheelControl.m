@@ -251,6 +251,17 @@
     
     // get the touch location normalized to the window (self has transformation applied)
     CGPoint nTouchLocation = [recognizer locationInView:nil];
+    
+    // respect device orientation
+    if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+        
+        if ([[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationLandscapeRight) {
+            nTouchLocation = CGPointMake(nTouchLocation.y, nTouchLocation.x);
+        }else{
+            nTouchLocation = CGPointMake(self.window.frame.size.width - nTouchLocation.y, nTouchLocation.x);
+        }
+    }
+    
     float distance = nTouchLocation.x - _panStart.x;
 //    float distanceY = nTouchLocation.y - _panStart.y;
     float anglePerItem = 2.0 * M_PI / (float)_icons.count;
