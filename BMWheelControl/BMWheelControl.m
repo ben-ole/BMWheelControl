@@ -131,8 +131,10 @@
         
         _iconRepresentations = [NSMutableArray arrayWithArray:_icons];
         
-        int i=0;
+        int i=-1;
         for (id ico in _icons) {
+            
+            i++;
             
             if([ico isKindOfClass:[NSNull class]]) continue;   // don't draw any icon for this case
             
@@ -153,8 +155,6 @@
                             format:@"Could not load an icon file at '%@'",ico];
             
             [_iconRepresentations replaceObjectAtIndex:i withObject:iconRep];
-            
-            i++;
         }
         
         _iconsLoaded = YES;
