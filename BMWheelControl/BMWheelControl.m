@@ -215,9 +215,7 @@
     // inform delegate
     if (_delegate && [_delegate respondsToSelector:@selector(wheel:didEndUpdating:)]) {
         
-        int relativeMove = selectedIndex - _selectedIndex;
-        NSLog(@"relative movement: %i",relativeMove);
-        [_delegate wheel:self didEndUpdating:relativeMove];
+        [_delegate wheel:self didEndUpdating:selectedIndex];
     }
     
     if(!animate){
@@ -352,7 +350,7 @@
     CGContextFillPath(ctx);
     
     // drawing icons
-    if(!_icons) return;
+    if(!_icons || !_iconRepresentations) return;
     
     float numIcons = (float)_icons.count;
     CGPoint center = CGPointMake(CGRectGetMidX(outerRect), CGRectGetMidY(outerRect));
@@ -360,9 +358,8 @@
     float angleSize = 2.0*M_PI / numIcons;
     
     
-    [_iconRepresentations enumerateObjectsWithOptions:NSEnumerationConcurrent
-                             usingBlock:^(id object, NSUInteger index, BOOL *stop) {
-
+    [_iconRepresentations enumerateObjectsUsingBlock:^(id object, NSUInteger index, BOOL *stop) {
+      
         if([object isKindOfClass:[NSNull class]]) return;   // don't draw any icon for this case
         
         UIImage* icon = object;
