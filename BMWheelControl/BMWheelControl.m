@@ -275,7 +275,13 @@
      
         return;
     }
-      
+    
+    // check if wheel is allowed to rotate to next item
+    if (_delegate && [_delegate respondsToSelector:@selector(wheel:willRotateToIndex:)] &&
+        ![_delegate wheel:self willRotateToIndex:(float)_selectedIndex-normalizedDistance]) {
+        return;
+    }
+    
     if(_panRecognizer.state == UIGestureRecognizerStateChanged) {
         
         // ensure to stay in bounds when cycling is disabled

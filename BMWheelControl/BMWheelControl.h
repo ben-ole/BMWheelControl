@@ -143,4 +143,7 @@
  */
 -(void)wheel:(BMWheelControl*)sender didEndUpdating:(int)newIndex;
 
+
+-(BOOL)wheel:(BMWheelControl *)sender willRotateToIndex:(float)newIndex;
+
 @end
