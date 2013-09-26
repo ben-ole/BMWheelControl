@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#define WAIT_FOR_ICONS 0
+#define WAIT_FOR_ICONS 1
 
 
 @protocol BMWheelDelegate;

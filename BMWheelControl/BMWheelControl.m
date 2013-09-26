@@ -356,7 +356,7 @@
     CGContextFillPath(ctx);
     
     // drawing icons
-    if(!_icons || !_iconRepresentations) return;
+    if(!_icons || !_iconRepresentations || !_iconsLoaded) return;
     
     float numIcons = (float)_icons.count;
     CGPoint center = CGPointMake(CGRectGetMidX(outerRect), CGRectGetMidY(outerRect));
