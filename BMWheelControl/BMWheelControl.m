@@ -211,7 +211,10 @@
     
     // update view
     float angle = - 2.0 * M_PI / (float)_icons.count * selectedIndex;
-        
+ 
+    // update index
+    _selectedIndex = selectedIndex;
+    
     // inform delegate
     if (_delegate && [_delegate respondsToSelector:@selector(wheel:didEndUpdating:)]) {
         
@@ -220,7 +223,6 @@
     
     if(!animate){
          self.transform = CGAffineTransformMakeRotation(angle);
-        _selectedIndex = selectedIndex;
         _panRecognizer.enabled = TRUE;
     }else{
     
@@ -232,7 +234,6 @@
                              self.transform = CGAffineTransformMakeRotation(angle);
                          } completion:^(BOOL finished) {
                              
-                             _selectedIndex = selectedIndex;
                              _panRecognizer.enabled = TRUE;
                              
                          }];
