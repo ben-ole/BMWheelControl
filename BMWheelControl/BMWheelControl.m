@@ -11,6 +11,8 @@
 
 @implementation BMWheelControl{
     NSMutableArray* _iconRepresentations;
+    NSMutableArray* _iconDisabledRepresentations;
+    NSMutableArray* _iconStates;
     UIPanGestureRecognizer* _panRecognizer;
     CGPoint _panStart;
     Boolean _iconsLoaded;
@@ -124,35 +126,79 @@
 -(void)setIcons:(NSArray *)icons{
     _icons = icons;
     _iconRepresentations = nil;
+    _iconDisabledRepresentations = nil;
     _iconsLoaded = NO;
+    _iconStates = nil;
     
     // load icons in background
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         
+        _iconStates = [[NSMutableArray alloc] init];
         _iconRepresentations = [NSMutableArray arrayWithArray:_icons];
+        _iconDisabledRepresentations = [NSMutableArray arrayWithArray:_icons];
         
         int i=-1;
         for (id ico in _icons) {
             
             i++;
             
+            // enable all icons by default
+            [_iconStates addObject:@(BMWHEEL_ICON_STATE_NORMAL)];
+            
             if([ico isKindOfClass:[NSNull class]]) continue;   // don't draw any icon for this case
             
-            if(![ico isKindOfClass:[NSString class]])
+            if (_delegate && [_delegate respondsToSelector:@selector(wheel:showIconWithIndex:)]) {
+                _iconStates[i] = @([_delegate wheel:self showIconWithIndex:i]);
+            }
+            
+            id ico_normal = ico;
+            
+            if ([ico isKindOfClass:[NSArray class]]) {
+                if ([(NSArray*)ico count] != 2 ||
+                    ![(NSArray*)ico[0] isKindOfClass:[NSString class]] ||
+                    ![(NSArray*)ico[1] isKindOfClass:[NSString class]]) {
+                    
+                    [NSException raise:@"Invalid icon data."
+                                format:@"The provided icon should be either a path of type NSString or an Array with 2 items each one a path of type NSString, but was of type '%@'",[ico class]];
+                }
+                
+                NSString* disabledIcon = (id)ico[1];
+                // load disabled icon
+                UIImage* iconRep;
+                if ([disabledIcon isAbsolutePath] &&
+                    [[NSFileManager defaultManager] fileExistsAtPath:disabledIcon]) {
+                    iconRep = [[UIImage alloc] initWithContentsOfFile:disabledIcon];
+                }else{
+                    iconRep = [UIImage imageNamed:disabledIcon];
+                }
+                
+                if(!iconRep)
+                    [NSException raise:@"Invalid icon name or path."
+                                format:@"Could not load an icon file at '%@'",disabledIcon];
+                
+                [_iconDisabledRepresentations replaceObjectAtIndex:i withObject:iconRep];
+                
+                ico_normal = ico[0]; // go on
+            }else{
+                [_iconDisabledRepresentations replaceObjectAtIndex:i withObject:[NSNull null]];
+            }
+            
+            if(![ico_normal isKindOfClass:[NSString class]])
                 [NSException raise:@"Invalid icon data."
-                            format:@"The provided icon path should be of type NSString but was of type '%@'",[ico class]];
+                            format:@"The provided icon path should be of type NSString but was of type '%@'",[ico_normal class]];
             
             // load icon
             UIImage* iconRep;
-            if ([(NSString*)ico isAbsolutePath] && [[NSFileManager defaultManager] fileExistsAtPath:ico]) {
-                iconRep = [[UIImage alloc] initWithContentsOfFile:ico];
+            if ([(NSString*)ico_normal isAbsolutePath] &&
+                [[NSFileManager defaultManager] fileExistsAtPath:ico_normal]) {
+                iconRep = [[UIImage alloc] initWithContentsOfFile:ico_normal];
             }else{
-                iconRep = [UIImage imageNamed:ico];
+                iconRep = [UIImage imageNamed:ico_normal];
             }
             
             if(!iconRep)
                 [NSException raise:@"Invalid icon name or path."
-                            format:@"Could not load an icon file at '%@'",ico];
+                            format:@"Could not load an icon file at '%@'",ico_normal];
             
             [_iconRepresentations replaceObjectAtIndex:i withObject:iconRep];
         }
@@ -165,6 +211,8 @@
         });
     });
 }
+
+
 
 -(void)setIconInset:(float)iconInset{
     _iconInset = iconInset;
@@ -220,6 +268,25 @@
         
         [_delegate wheel:self didEndUpdating:selectedIndex];
     }
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(wheel:showIconWithIndex:)]) {
+        for (int i=0; i<self.icons.count; i++) {
+            if ([_icons[i] isKindOfClass:[NSNull class]]) continue;
+            
+            _iconStates[i] = @([_delegate wheel:self showIconWithIndex:i]);
+        }
+    }
+    
+    // update disabled states
+    for (int i=0;i < _iconStates.count; i++) {
+        BMWHEEL_ICON_STATE ico_state = [_iconStates[i] integerValue];
+        
+        if (_selectedIndex == i)
+            _iconStates[i] = @(BMWHEEL_ICON_STATE_NORMAL);
+        else if(ico_state != BMWHEEL_ICON_STATE_HIDDEN)
+            _iconStates[i] = @(BMWHEEL_ICON_STATE_DISABLED);
+    }
+    [self setNeedsDisplay];    
     
     if(!animate){
          self.transform = CGAffineTransformMakeRotation(angle);
@@ -369,7 +436,13 @@
       
         if([object isKindOfClass:[NSNull class]]) return;   // don't draw any icon for this case
         
+        if ([_iconStates[index] integerValue] == BMWHEEL_ICON_STATE_HIDDEN) return;  // don't draw hidden icons
+        
         UIImage* icon = object;
+        
+        if ([_iconStates[index] integerValue] == BMWHEEL_ICON_STATE_DISABLED &&
+            ![_iconDisabledRepresentations[index] isKindOfClass:[NSNull class]])
+            icon = _iconDisabledRepresentations[index];
                                  
         CGPoint iconPosition = CGPointMake(radius * cos(((float)index)/numIcons * M_2_PI - M_PI_2) + center.x,
                                            radius * sin(((float)index)/numIcons * M_2_PI - M_PI_2) + center.y);

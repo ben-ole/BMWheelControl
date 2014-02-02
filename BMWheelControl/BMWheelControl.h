@@ -10,6 +10,12 @@
 
 #define WAIT_FOR_ICONS 1
 
+typedef enum {
+    BMWHEEL_ICON_STATE_NORMAL = 1,
+    BMWHEEL_ICON_STATE_DISABLED = 2,
+    BMWHEEL_ICON_STATE_HIDDEN = 3
+} BMWHEEL_ICON_STATE;
+
 
 @protocol BMWheelDelegate;
 
@@ -73,7 +79,6 @@
  */
 @property (retain,nonatomic) NSArray* icons;
 
-
 /** @name Interaction */
 
 /**
@@ -114,6 +119,10 @@
 @property (assign,nonatomic) float singleStepAnimationDuration;
 
 
+/**
+ * rotate wheel to selected index
+ @param animate whether rotation should be animated or not
+ */
 -(void)setSelectedIndex:(int)selectedIndex animated:(Boolean)animate;
 
 @end
@@ -145,5 +154,10 @@
 
 
 -(BOOL)wheel:(BMWheelControl *)sender willRotateToIndex:(float)newIndex;
+
+/**
+ here you have a chance to hide icons. this method is invoced on every diedEndUpdating:. The wheel will automatically resign rotation to a hidden item.
+ */
+-(BMWHEEL_ICON_STATE)wheel:(BMWheelControl *)sender showIconWithIndex:(int)index;
 
 @end
