@@ -365,7 +365,7 @@
         
         float angle = (- (float)_selectedIndex + normalizedDistance) * anglePerItem;
 
-         self.transform = CGAffineTransformMakeRotation(angle);
+        self.layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1.0);
 
         // inform delegate
         if (_delegate && [_delegate respondsToSelector:@selector(wheel:didUpdateToIndex:)]) {
@@ -391,8 +391,6 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    [self embedInContainer];
-
     if (WAIT_FOR_ICONS && !_iconsLoaded)
         return;
     
@@ -472,60 +470,4 @@
                self.bounds.size.height - _shadowBlur*2.);
 }
 
--(void)embedInContainer{
-    
-    if(_boundingView)
-        return;
-        
-    _boundingView = [[UIView alloc] initWithFrame:self.frame];
-    _boundingView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.translatesAutoresizingMaskIntoConstraints = NO;
-    _boundingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
-    _boundingView.backgroundColor = [UIColor clearColor];
-    [_boundingView removeConstraints:_boundingView.constraints];
-    
-    // move all constraints of self to _boundingView by replacing self with _boundingView in all relevant constraints
-    NSMutableArray* relativeConstraints = [[NSMutableArray alloc] init];
-    
-    NSMutableArray* sourceConstraints = [NSMutableArray arrayWithArray:self.superview.constraints] ;
-    [sourceConstraints addObjectsFromArray:self.constraints];
-    
-    for (NSLayoutConstraint* constr in sourceConstraints) {
-        NSLayoutConstraint* newConstr = nil;
-        
-        if (constr.firstItem == self) {
-            
-            newConstr = [NSLayoutConstraint constraintWithItem:_boundingView attribute:constr.firstAttribute
-                                                                         relatedBy:constr.relation
-                                                                            toItem:constr.secondItem attribute:constr.secondAttribute
-                                                                        multiplier:constr.multiplier constant:constr.constant];
-        }else if(constr.secondItem == self){
-            newConstr = [NSLayoutConstraint constraintWithItem:constr.firstItem attribute:constr.firstAttribute
-                                                                         relatedBy:constr.relation
-                                                                            toItem:_boundingView attribute:constr.secondAttribute
-                                                                        multiplier:constr.multiplier constant:constr.constant];
-        }
-        
-        if (newConstr) [relativeConstraints addObject:newConstr];
-    }
-    
-    UIView* parent = self.superview;
-    [self removeFromSuperview];
-    [_boundingView addSubview:self];
-    [parent addSubview:_boundingView];
-    
-    [parent addConstraints:relativeConstraints];
-    
-    self.frame = _boundingView.bounds;
-    [self removeConstraints:self.constraints];
-    
-
-    [_boundingView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_boundingView attribute:NSLayoutAttributeCenterX multiplier:1. constant:0]];
-    [_boundingView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_boundingView attribute:NSLayoutAttributeCenterY multiplier:1. constant:0]];
-    [_boundingView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeWidth relatedBy:0 toItem:nil attribute:0 multiplier:1 constant:self.bounds.size.width]];
-    [_boundingView addConstraint:[NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:0 toItem:nil attribute:0 multiplier:1 constant:self.bounds.size.height]];
-    
-    [_boundingView updateConstraintsIfNeeded];
-}
 @end
