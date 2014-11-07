@@ -17,6 +17,7 @@
     CGPoint _panStart;
     Boolean _iconsLoaded;
     UIView* _boundingView;
+    float _currentAngle;
 }
 
 #pragma mark - INIT
@@ -235,7 +236,7 @@
     
     // if we have no items(icons) - no selection is possible
     if (!_icons || _icons.count == 0) {
-        _selectedIndex = NSNotFound;
+        _selectedIndex = -1;
         return;
     }
     
@@ -243,7 +244,7 @@
     if (selectedIndex < 0) {
         if(!_cyclingEnabled) return;
         
-        selectedIndex = _icons.count - 1;
+        selectedIndex = (int)_icons.count - 1;
     }
     
     if (selectedIndex >= _icons.count) {
@@ -288,23 +289,24 @@
     }
     [self setNeedsDisplay];    
     
-    if(!animate){
-         self.transform = CGAffineTransformMakeRotation(angle);
+//    if(!animate){
+        self.layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1.0);
         _panRecognizer.enabled = TRUE;
-    }else{
-    
-        // animate view
-        [UIView animateWithDuration:_singleStepAnimationDuration*MAX(1.0,indexDistance)
-                              delay:0.
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                             self.transform = CGAffineTransformMakeRotation(angle);
-                         } completion:^(BOOL finished) {
-                             
-                             _panRecognizer.enabled = TRUE;
-                             
-                         }];
-    }
+//    }else{
+//    
+//        // animate view
+//        
+//        [UIView animateWithDuration:_singleStepAnimationDuration*MAX(1.0,indexDistance)
+//                              delay:0.
+//                            options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionAllowAnimatedContent
+//                         animations:^{
+//                             self.layer.transform = CATransform3DMakeRotation(angle-_currentAngle, 0, 0, 1.0);
+//                         } completion:^(BOOL finished) {
+//                             
+//                             _panRecognizer.enabled = TRUE;
+//                             
+//                         }];
+//    }
 }
 
 #pragma mark - TOUCH HANDLER
@@ -366,6 +368,7 @@
         float angle = (- (float)_selectedIndex + normalizedDistance) * anglePerItem;
 
         self.layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1.0);
+        _currentAngle = angle;
 
         // inform delegate
         if (_delegate && [_delegate respondsToSelector:@selector(wheel:didUpdateToIndex:)]) {
